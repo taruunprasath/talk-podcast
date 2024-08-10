@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Jersey+20&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&family=Sedan+SC&display=swap');
+
+
+body{
+  font-family: "Roboto Slab", serif;
+  background-color: #320944;
+  overflow-x: hidden;
+  color: #fff;
+}
+
+
+input{
+  font-family: "Roboto Slab", serif;
+}

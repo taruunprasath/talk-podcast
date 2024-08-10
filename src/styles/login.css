@@ -1,0 +1,146 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh; 
+    animation: modeTransition 0.5s ease;
+}
+.gradient{
+    position: absolute;
+    width: 1390px;
+    height: 150px;
+    margin: auto;
+    background-color: rgb(236, 73, 128);
+    filter: blur(100px);
+    z-index: -1;
+    top:-120px;
+}
+.logo-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 12vh;
+  }
+  
+  .logo-center img {
+    width: 200px;
+    height: 100px; 
+    filter: brightness(1.75) drop-shadow(0 0 0.75rem #FF00FF);
+  }
+  
+
+@keyframes modeTransition {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.wrapper {
+    width: 400px;
+    height: 350px;
+    color: rgb(255, 255, 255);
+    box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 4px, rgba(255, 255, 255, 0.3) 0px 7px 13px -3px, rgba(255, 255, 255, 0.2) 0px -3px 0px inset;
+    border: 2.5px solid #ffffff;
+    background-color: rgba(255, 255, 255, 0.187);
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.wrapper h1 {
+    font-size: 36px;
+    text-align: center;
+    letter-spacing: 5px;
+}
+
+.input-box {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-box input {
+    width: 100%;
+    padding: 10px 0px 10px 10px;
+    font-size: 16px;
+    border: 2px solid #fff;
+    border-radius: 15px;
+    background: transparent;
+    color: #ffffff;
+    outline: none;
+}
+
+.input-box input:focus {
+    border-color: #FF00FF;
+    color: #FF00FF;
+}
+
+.input-box input::placeholder {
+    color: #ffffff;
+}
+
+.input-box .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+
+.wrapper button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background: #007bff;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    margin-top: 20px;
+}
+
+.wrapper button:hover {
+    background: #0056b3;
+}
+
+.wrapper .register{
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 15px;
+}
+
+.register p a{
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register p a:hover{
+    color: white;
+    text-decoration: underline white;
+}
+
+
+@media (max-width: 576px) {
+    .wrapper1 {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .input-box1 input {
+        padding: 10px 35px 10px 10px;
+    }
+    
+    .input-box1 .icon {
+        right: 10px;
+    }
+}
+

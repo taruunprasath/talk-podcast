@@ -1,0 +1,50 @@
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+}
+
+.logo img{
+    position: absolute;
+    top: 1%;
+    margin-right: 1rem;
+    width: 150px;
+    height: 80px; 
+    filter: brightness(1.75) drop-shadow(0 0 0.75rem #FF00FF);
+}
+
+.links{
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    align-items: center;
+    margin-right: 50px;
+    margin-bottom: 50px;
+}
+
+.links a{
+    font-size: 18px;
+    color: rgb(176, 172, 172);
+    text-decoration: none;
+}
+
+.links a:hover{
+    color:white;
+    transition: all 0.3s;
+}
+
+.gradient{
+    position: absolute;
+    width: 1500px;
+    height: 150px;
+    margin: auto;
+    background-color: rgb(236, 73, 128);
+    filter: blur(100px);
+    z-index: -1;
+    top:-120px;
+}
+
+.active{
+    color: white !important;
+}
