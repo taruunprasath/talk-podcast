@@ -10,6 +10,9 @@ import { useDispatch } from 'react-redux';
 import { setUser } from './slices/userSlice';
 import PrivateRoutes from './components/PrivateRoutes/PrivateRoutes';
 import Create from './pages/Create';
+import Podcast from './pages/Podcast';
+import PodcastDetail from './pages/PodcastDetail';
+import Episode from './pages/Episode';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -56,6 +59,9 @@ const App = () => {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/create" element={<Create />}/>
+        <Route path="/podcasts" element={<Podcast/>}/>
+        <Route path="/podcast/:id" element={<PodcastDetail/>}/>
+        <Route path="/podcast/:id/create-episode" element={<Episode/>}/>
       </Routes>
     </BrowserRouter>
   );

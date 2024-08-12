@@ -1,0 +1,211 @@
+.podcast-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.podcast-card {
+    width: 270px;
+    height: 280px;
+    background-color: #6e1396;
+    border-radius: 20px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.podcast-card:hover {
+    border: 1px solid rgb(251, 0, 255);
+    box-shadow: 0 0 15px 5px rgba(255, 0, 166, 0.6), 
+                0 0 30px 10px rgba(255, 0, 166, 0.4), 
+                0 0 45px 15px rgba(255, 0, 166, 0.2);
+    transform: scale(1.03);
+}
+
+.display-image-podcast {
+    width: 100%;
+    height: 250px;
+    border-radius: 1.5rem;
+    object-fit: cover;
+    border: 1px solid #060606;
+}
+
+.display-image-placeholder {
+    width: 100%;
+    height: 220px;
+    border-radius: 1.5rem;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #555;
+    font-size: 14px;
+}
+
+.title-podcast {
+    font-size: 1.25rem;
+    color: white;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+.podcast-flex {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.search-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 20px;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #8D2860;
+    border-radius: 25px;
+    background-color: #00000079;
+    font-size: 16px;
+    color: #ffffff;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-box::placeholder {
+    color: #ffffff;
+    opacity: 0.7;
+  }
+  
+  .search-box:focus {
+    outline: none;
+    border-color: #ff00ff;
+    box-shadow: 0 0 10px rgba(50, 9, 68, 0.5);
+  }
+
+  .gradient1 {
+    position: absolute;
+    width:1600px;
+    height: 50px;
+    background: linear-gradient(
+      to top, 
+      rgb(0, 0, 0), 
+      rgba(255, 255, 255, 0) 
+    );
+    filter: blur(5px);
+    z-index: 1;
+    margin-left: -5px;
+    bottom: 0px;
+  }
+  
+  
+  .podcast-detail-container {
+    position: relative;
+    padding: auto;
+  }
+  
+  .loading-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #ffffff;
+  }
+  
+  .banner-wrapper {
+    position: relative;
+    text-align: center;
+  }
+  
+  .banner-image {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 1rem;
+    border: 2px solid #fff;
+  }
+  
+  .title-overlay {
+    position: absolute;
+    top: 81%;
+    left: 10px; 
+    transform: none; 
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    z-index: 2;
+  }
+  
+  
+  .podcast-content {
+    margin-top: 20px;
+  }
+  
+  .podcast-description {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #ffffff;
+  }
+  
+  .episodes-heading {
+    margin-top: 18px;
+    font-size: 2rem;
+    color: #ffffff;
+  }
+  
+  .btn1 {
+    background-color: #8D2860;
+    color: #ffffff;
+    font-weight: 600;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    font-size: 16px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn1::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: #a41965;
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) scale(0);
+}
+
+.btn1:hover {
+    background-color: #8D2860;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn1:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    background-color: #bf3f97;
+}
+
+.btn1:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.btn1-container {
+    text-align: right;
+}
