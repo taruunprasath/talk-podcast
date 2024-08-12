@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import "../../styles/episode.css";
 import "../../styles/podcast.css";
-
+import ConfirmationModal from "../Modal/Modal";
 import { auth } from '../../../firebase';
 
 const EpisodeDetails = ({index,title, description, audioFile, onClick, onDelete,createdBy}) => {
