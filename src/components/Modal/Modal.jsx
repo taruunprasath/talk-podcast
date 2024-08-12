@@ -1,17 +1,16 @@
 import React from 'react';
-import '../Modal/modal.css';
+import "../Modal/modal.css";
 
-const ConfirmationModal = ({ isOpen, onClose, onConfirm }) => {
+const ConfirmationModal = ({ isOpen, onClose, onConfirm, message }) => {
   if (!isOpen) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Confirm Deletion</h3>
-        <p>Are you sure you want to delete it?</p>
+        <h2>{message}</h2>
         <div className="modal-buttons">
-          <button onClick={onConfirm} className="confirm-button">Yes</button>
-          <button onClick={onClose} className="cancel-button">No</button>
+          <button className="confirm-button" onClick={onConfirm}>Yes</button>
+          <button className="cancel-button" onClick={onClose}>No</button>
         </div>
       </div>
     </div>

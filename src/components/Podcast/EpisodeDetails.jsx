@@ -29,6 +29,7 @@ const EpisodeDetails = ({index,title, description, audioFile, onClick, onDelete,
             isOpen={isModalOpen}
             onClose={() => setIsModalOpen(false)}
             onConfirm={handleConfirmDelete}
+            message={"Are you sure you want to delete this  episodes"}
           />
           </>
       )}

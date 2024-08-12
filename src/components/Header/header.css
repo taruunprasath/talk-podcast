@@ -48,3 +48,25 @@
 .active{
     color: white !important;
 }
+
+.logout-button {
+    background-color: #d63384;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button:hover {
+    background-color: #c2185b;
+}
+
+.logout-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(183, 28, 28, 0.5);
+}

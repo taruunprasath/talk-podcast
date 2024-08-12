@@ -8,9 +8,11 @@ import EpisodeDetails from '../components/Podcast/EpisodeDetails';
 import Audioplayer from '../components/Audioplayer/Audioplayer';
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../components/Modal/Modal';
+import { useSelector } from 'react-redux';
 
 const PodcastDetail = () => {
   const { id } = useParams();
+  const user = useSelector((state) => state.user.user);
   const [podcast, setPodcast] = useState({});
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
@@ -118,7 +120,9 @@ const PodcastDetail = () => {
                 </button>
                 <button
                   className="btn1"
-                  onClick={() => setIsModalOpen(true)}
+                  onClick={() => {setIsModalOpen(true);
+                    toast.success("Podcast Deleted Successfully!",{position:"top-right", autoClose:2000});
+                  }}
                 >
                   Delete Podcast
                 </button>
@@ -126,7 +130,7 @@ const PodcastDetail = () => {
             )}
             <div className="banner-wrapper">
               <img src={podcast.bannerImageUrl} alt={podcast.title} className="banner-image" />
-              <h1 className="title-overlay">{podcast.title}</h1>
+              <h1 className="title-overlay">{podcast.title} <span style={{fontSize:"20px",color:"rgba(178, 176, 177, 1)"}}>by: {user.name}</span></h1>
               <div className="gradient1"></div>
             </div>
             <div className="podcast-content">
@@ -156,6 +160,7 @@ const PodcastDetail = () => {
               isOpen={isModalOpen}
               onClose={() => setIsModalOpen(false)}
               onConfirm={handleDeletePodcast}
+              message={"Are you sure you want to delete this podcast and all its episodes?"}
             />
           </>
         )
