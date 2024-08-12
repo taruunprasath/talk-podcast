@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { collection, doc, getDoc, onSnapshot, query } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, onSnapshot, query, writeBatch, getDocs } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
-import "../styles/podcast.css"
+import "../styles/podcast.css";
 import Header from '../components/Header/Header';
 import EpisodeDetails from '../components/Podcast/EpisodeDetails';
 import Audioplayer from '../components/Audioplayer/Audioplayer';
+import { toast } from 'react-toastify';
+import ConfirmationModal from '../components/Modal/Modal';
 
 const PodcastDetail = () => {
   const { id } = useParams();
   const [podcast, setPodcast] = useState({});
   const [loading, setLoading] = useState(true);
-  const [episodes, setEpisodes]= useState([]);
+  const [episodes, setEpisodes] = useState([]);
   const [playing, setPlaying] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -39,22 +42,60 @@ const PodcastDetail = () => {
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     const unsubscribe = onSnapshot(
       query(collection(db, "podcasts", id, "episodes")),
-      (querySnapshot)=>{
+      (querySnapshot) => {
         const episodeData = [];
-        querySnapshot.forEach((doc)=>{
-          episodeData.push({id: doc.id, ...doc.data()});
+        querySnapshot.forEach((doc) => {
+          episodeData.push({ id: doc.id, ...doc.data() });
         });
         setEpisodes(episodeData);
-      },  
+      },
       (error) => {
         console.error("Error fetching episodes:", error);
       }
     );
     return () => unsubscribe();
   }, [id]);
+
+  const handleDeleteEpisode = async (episodeId) => {
+    try {
+      const episodeRef = doc(db, "podcasts", id, "episodes", episodeId);
+      await deleteDoc(episodeRef);
+      toast.success("Episode deleted successfully!", { position: "top-right", autoClose: 2000 });
+
+      setEpisodes((prevEpisodes) => 
+        prevEpisodes.filter((episode) => episode.id !== episodeId)
+      );
+    } catch (error) {
+      console.error('Error deleting episode:', error);
+      toast.error("Error deleting episode. Please try again.", { position: "top-right", autoClose: 3000 });
+    }
+  };
+
+  const handleDeletePodcast = async () => {
+    try {
+      const batch = writeBatch(db);
+
+      const episodesRef = collection(db, "podcasts", id, "episodes");
+      const querySnapshot = await getDocs(episodesRef);
+      querySnapshot.forEach((doc) => {
+        batch.delete(doc.ref);
+      });
+
+      const podcastRef = doc(db, "podcasts", id);
+      batch.delete(podcastRef);
+
+      await batch.commit();
+
+      toast.success("Podcast and all episodes deleted successfully!", { position: "top-right", autoClose: 2000 });
+      navigate("/podcasts");
+    } catch (error) {
+      console.error('Error deleting podcast:', error);
+      toast.error("Error deleting podcast. Please try again.", { position: "top-right", autoClose: 3000 });
+    }
+  };
 
   return (
     <div className="podcast-detail-container">
@@ -64,14 +105,25 @@ const PodcastDetail = () => {
       ) : (
         podcast.id && (
           <>
-          {podcast.createdBy == auth.currentUser.uid &&(
-          <div className="btn1-container">
-           <button className="btn1" onClick={()=>{
-                navigate(`/podcast/${id}/create-episode`);
-              }}> Create Episodes
-              </button>
+            {podcast.createdBy === auth.currentUser.uid && (
+              <div className="btn1-container">
+                <button
+                  className="btn1"
+                  onClick={() => {
+                    navigate(`/podcast/${id}/create-episode`);
+                    toast.success("Episode Created Successfully!", { position: "top-right", autoClose: 2000 });
+                  }}
+                >
+                  Create Episode
+                </button>
+                <button
+                  className="btn1"
+                  onClick={() => setIsModalOpen(true)}
+                >
+                  Delete Podcast
+                </button>
               </div>
-          )}
+            )}
             <div className="banner-wrapper">
               <img src={podcast.bannerImageUrl} alt={podcast.title} className="banner-image" />
               <h1 className="title-overlay">{podcast.title}</h1>
@@ -80,32 +132,35 @@ const PodcastDetail = () => {
             <div className="podcast-content">
               <p className="podcast-description">{podcast.description}</p>
               <h2 className="episodes-heading">Episodes</h2>
-              {episodes.length>0?(
-                <>{episodes.map((episodes, index)=>{
-                  return <EpisodeDetails 
-                  key={index}
-                  index={index + 1}
-                  title={episodes.title} 
-                  description={episodes.description} 
-                  audioFile={episodes.audioFile}
-                   onClick={(file)=> setPlaying(file)}
-                   />
-                })}
-                </>
-                ):(
+              {episodes.length > 0 ? (
+                episodes.map((episode, index) => (
+                  <EpisodeDetails
+                    key={episode.id}
+                    index={index + 1}
+                    title={episode.title}
+                    description={episode.description}
+                    audioFile={episode.audioFile}
+                    onClick={() => setPlaying(episode.audioFile)}
+                    onDelete={() => handleDeleteEpisode(episode.id)}
+                    createdBy={podcast.createdBy}
+                  />
+                ))
+              ) : (
                 <p>No Episodes</p>
-                )}
-                
+              )}
             </div>
             {playing && (
               <Audioplayer audioSrc={playing} image={podcast.displayImageUrl} />
-              )}
+            )}
+            <ConfirmationModal
+              isOpen={isModalOpen}
+              onClose={() => setIsModalOpen(false)}
+              onConfirm={handleDeletePodcast}
+            />
           </>
-          
         )
       )}
     </div>
-    
   );
 };
 
