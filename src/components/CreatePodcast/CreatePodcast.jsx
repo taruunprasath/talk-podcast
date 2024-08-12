@@ -56,6 +56,7 @@ const CreatePodcast = () => {
                     position: "top-right",
                     autoClose: 3000,
                 });
+                setLoading(false);
                 console.error(error);
             }
         } else {
@@ -63,6 +64,7 @@ const CreatePodcast = () => {
                 position: "top-right",
                 autoClose: 3000,
             });
+            setLoading(false);
         }
     }
 
