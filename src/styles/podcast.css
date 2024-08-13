@@ -175,6 +175,27 @@
     z-index: 1;
 }
 
+  #btn1{
+    background-color: rgb(239, 45, 45);
+  }
+
+  #btn:hover{
+    background-color: #a41919;
+  }
+  #btn1::before{
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background-color: #ff0606;
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    z-index: -1;
+    transform: translate(-50%, -50%) scale(0);
+  }
+
 .btn1::before {
     content: "";
     position: absolute;

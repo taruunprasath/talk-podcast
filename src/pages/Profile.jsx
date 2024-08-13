@@ -1,11 +1,40 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import Header from '../components/Header/Header';
 import "../styles/profile.css";
+import PodcastCard from "../components/Podcast/PodcastCard";
+import { collection, onSnapshot, query } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
-  
+  const [userPodcasts, setUserPodcasts] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      const unsubscribe = onSnapshot(
+        query(collection(db, "podcasts")),
+        (querySnapshot) => {
+          const podcastsData = [];
+          querySnapshot.forEach((doc) => {
+            const podcast = { id: doc.id, ...doc.data() };
+            if (podcast.createdBy === user.uid) {
+              podcastsData.push(podcast);
+            }
+          });
+          setUserPodcasts(podcastsData);
+        },
+        (error) => {
+          console.error("Error fetching user podcasts:", error);
+        }
+      );
+
+      return () => {
+        unsubscribe();
+      };
+    }
+  }, [user]);
+
   if (!user) {
     return (
       <p style={{
@@ -28,6 +57,21 @@ const Profile = () => {
         <div className="welcome-container">
           <h1 className="welcome-message">Welcome, {user.name}!</h1>
           <p className="welcome-subtext">We're glad to have you here. Dive into our latest episodes and enjoy your podcast journey!</p>
+        </div>
+        <h1 style={{textAlign:"center"}}>Your Podcasts</h1>
+        <div className="podcast-flex">
+          {userPodcasts.length > 0 ? (
+            userPodcasts.map((podcast) => (
+              <PodcastCard
+                key={podcast.id}
+                id={podcast.id}
+                title={podcast.title}
+                displayImage={podcast.displayImageUrl}
+              />
+            ))
+          ) : (
+            <p style={{ fontSize: 24, textAlign: 'center' }}>You haven't created any podcasts yet.</p>
+          )}
         </div>
       </div>
     </>

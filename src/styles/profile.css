@@ -3,18 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 80vh;
+    height: 110vh;
     padding: 0 20px;
-    animation: bounce 2s infinite ease-in-out;
-}
-
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
 }
 
   .welcome-container {
@@ -53,3 +43,12 @@
     width: 100%;
   }
   
+  .podcast-flex {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    flex-wrap: wrap;
+    margin: 1rem;
+}

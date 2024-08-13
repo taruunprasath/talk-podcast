@@ -131,6 +131,7 @@ const PodcastDetail = () => {
                 </button>
                 <button
                   className="btn1"
+                  id="btn1"
                   onClick={() => setIsModalOpen(true)}
                 >
                   Delete Podcast
