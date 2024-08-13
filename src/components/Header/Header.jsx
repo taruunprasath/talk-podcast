@@ -17,10 +17,10 @@ const Header = () => {
     const handleLogout = () => {
       signOut(auth)
         .then(() => {
-          toast.success("User Logged Out!", { position: "top-right", autoClose: 3000 });
+          toast.success("User Logged Out!", { position: "top-right", autoClose: 1000 });
           setTimeout(() => {
             navigate("/");
-          }, 5000);
+          }, 2000);
         })
         .catch((error) => {
           toast.error(`Error: ${error.message}`);

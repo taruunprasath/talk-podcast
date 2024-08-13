@@ -16,6 +16,7 @@ const PodcastDetail = () => {
   const [podcast, setPodcast] = useState({});
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);
+  const [creatorName, setCreatorName] = useState("");
   const [playing, setPlaying] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -32,7 +33,17 @@ const PodcastDetail = () => {
       const docSnap = await getDoc(docRef);
 
       if (docSnap.exists()) {
-        setPodcast({ id: id, ...docSnap.data() });
+        const podcastData = { id: id, ...docSnap.data() };
+        setPodcast(podcastData);
+
+        const userRef = doc(db, "users", podcastData.createdBy);
+        const userSnap = await getDoc(userRef);
+        if (userSnap.exists()) {
+          setCreatorName(userSnap.data().name);
+        } else {
+          console.error("User not found.");
+        }
+
       } else {
         console.error("Podcast not found.");
         setTimeout(() => navigate("/podcasts"), 3000);
@@ -120,9 +131,7 @@ const PodcastDetail = () => {
                 </button>
                 <button
                   className="btn1"
-                  onClick={() => {setIsModalOpen(true);
-                    toast.success("Podcast Deleted Successfully!",{position:"top-right", autoClose:2000});
-                  }}
+                  onClick={() => setIsModalOpen(true)}
                 >
                   Delete Podcast
                 </button>
@@ -130,7 +139,7 @@ const PodcastDetail = () => {
             )}
             <div className="banner-wrapper">
               <img src={podcast.bannerImageUrl} alt={podcast.title} className="banner-image" />
-              <h1 className="title-overlay">{podcast.title} <span style={{fontSize:"20px",color:"rgba(178, 176, 177, 1)"}}>by: {user.name}</span></h1>
+              <h1 className="title-overlay">{podcast.title} <span style={{fontSize:"20px",color:"rgba(178, 176, 177, 1)"}}>by: {creatorName}</span></h1>
               <div className="gradient1"></div>
             </div>
             <div className="podcast-content">
