@@ -9,6 +9,7 @@ import { db } from '../../firebase';
 const Profile = () => {
   const user = useSelector((state) => state.user.user);
   const [userPodcasts, setUserPodcasts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
@@ -18,24 +19,29 @@ const Profile = () => {
           const podcastsData = [];
           querySnapshot.forEach((doc) => {
             const podcast = { id: doc.id, ...doc.data() };
+            console.log("Fetched podcast:", podcast); 
             if (podcast.createdBy === user.uid) {
               podcastsData.push(podcast);
             }
           });
+          console.log("Filtered podcasts:", podcastsData); 
           setUserPodcasts(podcastsData);
+          setLoading(false);
         },
         (error) => {
           console.error("Error fetching user podcasts:", error);
+          setLoading(false);
         }
       );
-
+  
       return () => {
         unsubscribe();
       };
     }
   }, [user]);
+  
 
-  if (!user) {
+  if (loading) {
     return (
       <p style={{
         fontSize: 40,
