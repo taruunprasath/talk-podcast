@@ -22,7 +22,7 @@ const Profile = () => {
             if (podcast.createdBy === user.uid) {
               podcastsData.push(podcast);
             }
-          }); 
+          });
           setUserPodcasts(podcastsData);
           setLoading(false);
         },
@@ -37,7 +37,7 @@ const Profile = () => {
       };
     }
   }, [user]);
-  
+
 
   if (loading) {
     return (
@@ -74,7 +74,9 @@ const Profile = () => {
               />
             ))
           ) : (
-            <p style={{ fontSize: 24, textAlign: 'center' }}>You haven't created any podcasts yet.</p>
+            <p style={{ fontSize: 24, textAlign: 'center' }}>
+              {loading ? "Podcast Not Found" : "You haven't created any podcasts yet."}
+            </p>
           )}
         </div>
       </div>

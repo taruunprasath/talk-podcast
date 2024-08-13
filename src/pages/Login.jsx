@@ -24,31 +24,32 @@ const Login = () => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+
       const userDoc = await getDoc(doc(db, "users", user.uid));
       const userData = userDoc.data();
 
       dispatch(
         setUser({
-          name:userData.name,
-          email:user.email,
-          uid:user.id,
-          profilePic:userData.profilePic
+          name: userData.name,
+          email: user.email,
+          uid: user.uid,
+          profilePic: userData.profilePic,
         })
       );
 
-      if (user) {
-        toast.success("Login Successful",{ position: "top-right", autoClose:3000 });
-        navigate('/profile');
-      }
+      toast.success("Login Successful", { position: "top-right", autoClose: 3000 });
+      navigate('/profile');
+      
     } catch (error) {
-      toast.error("Invalid Login", { position: "top-right", autoClose:3000 });
+      console.error("Login failed:", error);
+      toast.error("Invalid Login", { position: "top-right", autoClose: 3000 });
     }
   };
 
   return (
     <>
-    <div className="gradient"></div>
-    <div className="logo-center"><img src={Logo} alt="Logo"/></div>
+      <div className="gradient"></div>
+      <div className="logo-center"><img src={Logo} alt="Logo" /></div>
       <div className="login-container">
         <div className='wrapper'>
           <form onSubmit={submit}>
