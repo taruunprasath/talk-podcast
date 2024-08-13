@@ -8,11 +8,9 @@ import EpisodeDetails from '../components/Podcast/EpisodeDetails';
 import Audioplayer from '../components/Audioplayer/Audioplayer';
 import { toast } from 'react-toastify';
 import ConfirmationModal from '../components/Modal/Modal';
-import { useSelector } from 'react-redux';
 
 const PodcastDetail = () => {
   const { id } = useParams();
-  const user = useSelector((state) => state.user.user);
   const [podcast, setPodcast] = useState({});
   const [loading, setLoading] = useState(true);
   const [episodes, setEpisodes] = useState([]);

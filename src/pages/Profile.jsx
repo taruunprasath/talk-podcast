@@ -19,12 +19,10 @@ const Profile = () => {
           const podcastsData = [];
           querySnapshot.forEach((doc) => {
             const podcast = { id: doc.id, ...doc.data() };
-            console.log("Fetched podcast:", podcast); 
             if (podcast.createdBy === user.uid) {
               podcastsData.push(podcast);
             }
-          });
-          console.log("Filtered podcasts:", podcastsData); 
+          }); 
           setUserPodcasts(podcastsData);
           setLoading(false);
         },
