@@ -59,7 +59,7 @@
     display: inline-block;
     width: 700px;
     margin-top: 10px;
-    margin-left: 15px;
+    margin-left: 0px;
     padding: 18px 20px;
     font-size: 17px;
     font-weight: 700;
@@ -131,3 +131,52 @@
     }
   }
   
+
+  @media (max-width: 768px) {
+    .custom-form {
+        margin-top: 10px;
+        padding:20px 30px;
+    }
+
+    .custom-form h1 {
+        font-size: 34px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px 12px;
+        font-size: 14px;
+    }
+
+    .submit-button {
+        padding: 15px 18px;
+        font-size: 16px;
+    }
+}
+
+/* Media Queries for Mobile Screens */
+
+@media (max-width: 576px) {
+    .custom-form {
+        padding: 15px 20px;
+    }
+
+    .custom-form h1 {
+        font-size: 28px;
+    }
+
+    .form-group label {
+        font-size: 16px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 8px 10px;
+        font-size: 13px;
+    }
+
+    .submit-button {
+        padding: 12px 15px;
+        font-size: 15px;
+    }
+}

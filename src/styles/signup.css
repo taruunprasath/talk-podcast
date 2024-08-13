@@ -145,3 +145,78 @@
     }
 }
 
+@media (max-width: 768px) {
+    .signup-container {
+        height: auto; /* Allow container to adapt to content */
+    }
+    
+    .wrapper1 {
+        width: 80%;
+        height: auto; /* Let height adapt to content */
+        padding: 30px;
+    }
+    
+    .wrapper1 h1 {
+        font-size: 30px;
+    }
+    
+    .input-box1 input {
+        padding: 10px 30px 10px 10px;
+    }
+    
+    .input-box1 .icon {
+        right: 12px;
+    }
+}
+
+/* Media Queries for Mobile Screens */
+@media (max-width: 576px) {
+    .signup-container {
+        height: auto; /* Allow container to adapt to content */
+        padding: 20px;
+    }
+    
+    .gradient {
+        width: 100%;
+        height: 100px; /* Adjust height to fit mobile screens */
+        top: -100px; /* Adjust positioning to fit mobile screens */
+    }
+    
+    .logo-center {
+        height: 10vh;
+    }
+    
+    .logo-center img {
+        width: 120px;
+        height: 60px;
+    }
+    
+    .wrapper1 {
+        width: 90%;
+        padding: 20px;
+        box-shadow: rgba(255, 255, 255, 0.4) 0px 2px 4px, rgba(255, 255, 255, 0.3) 0px 7px 13px -3px, rgba(255, 255, 255, 0.2) 0px -3px 0px inset;
+        border: 2px solid #ffffff;
+        background-color: rgba(255, 255, 255, 0.187);
+    }
+    
+    .wrapper1 h1 {
+        font-size: 24px;
+    }
+    
+    .input-box1 input {
+        padding: 10px 25px 10px 10px;
+    }
+    
+    .input-box1 .icon {
+        right: 8px;
+    }
+    
+    .wrapper1 button {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .register p a {
+        font-size: 14px;
+    }
+}

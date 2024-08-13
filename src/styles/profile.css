@@ -9,7 +9,7 @@
 
   .welcome-container {
     text-align: center;
-    background: linear-gradient(135deg, #ff1856, #ff008c);
+    background: linear-gradient(135deg, #ff1856d3, #ff008cc7);
     padding: 50px;
     border-radius: 20px;
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
@@ -51,4 +51,48 @@
     gap: 5rem;
     flex-wrap: wrap;
     margin: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .welcome-container {
+      margin-top: 100px;
+      padding: 20px;
+      max-width: 90%;
+  }
+
+  .welcome-message {
+      font-size: 36px;
+  }
+
+  .welcome-subtext {
+      font-size: 20px;
+  }
+
+  .podcast-flex {
+      flex-direction: column;
+      gap: 2rem;
+      padding: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .profile-container {
+      padding: 0 10px;
+  }
+
+  .welcome-container {
+      padding: 20px;
+  }
+
+  .welcome-message {
+      font-size: 28px;
+  }
+
+  .welcome-subtext {
+      font-size: 18px;
+  }
+
+  .podcast-flex {
+      gap: 1rem;
+  }
 }

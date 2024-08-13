@@ -76,3 +76,68 @@
     box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.3);
 }
 
+@media screen and (max-width: 1024px) {
+    .custom-player {
+        width: 70%;
+        margin-left: 0;
+        left: 15%;
+    }
+
+    .volume-range {
+        width: 40%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .custom-player {
+        width: 85%;
+        margin-left: 0;
+        left: 5%;
+        padding: 0.75rem;
+        gap: 1rem;
+    }
+
+    .display-image-player {
+        height: 40px;
+        width: 40px;
+    }
+
+    .volume-range {
+        width: 50%;
+    }
+
+    .delete-button {
+        padding: 8px 14px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .custom-player {
+        width: 100%;
+        left: 0;
+        padding: 0.5rem;
+        gap: 0.5rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .display-image-player {
+        height: 30px;
+        width: 30px;
+    }
+
+    .duration-flex {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .volume-range {
+        width: 100%;
+    }
+
+    .delete-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
