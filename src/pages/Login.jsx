@@ -23,28 +23,37 @@ const Login = () => {
     e.preventDefault();
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      const userDoc = await getDoc(doc(db, "users", user.uid));
-      const userData = userDoc.data();
-
-      dispatch(
-        setUser({
-          name: userData.name,
-          email: user.email,
-          uid: user.uid,
-          profilePic: userData.profilePic,
-        })
-      );
-
-      toast.success("Login Successful", { position: "top-right", autoClose: 3000 });
-      navigate('/profile');
       
+      if (userCredential && userCredential.user) {
+        const user = userCredential.user;
+  
+        const userDoc = await getDoc(doc(db, "users", user.uid));
+        if (userDoc.exists()) {
+          const userData = userDoc.data();
+  
+          dispatch(
+            setUser({
+              name: userData.name,
+              email: user.email,
+              uid: user.uid,
+              profilePic: userData.profilePic,
+            })
+          );
+  
+          toast.success("Login Successful", { position: "top-right", autoClose: 3000 });
+          navigate('/profile');
+        } else {
+          throw new Error("User data does not exist in the database.");
+        }
+      } else {
+        throw new Error("User credentials are not available.");
+      }
     } catch (error) {
       console.error("Login failed:", error);
       toast.error("Invalid Login", { position: "top-right", autoClose: 3000 });
     }
   };
+  
 
   return (
     <>
