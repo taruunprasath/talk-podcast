@@ -5,6 +5,7 @@ import { db, storage, auth } from '../../../firebase';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { toast, ToastContainer } from 'react-toastify';
 import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const CreatePodcast = () => {
     const [title, setTitle] = useState("");
@@ -12,6 +13,7 @@ const CreatePodcast = () => {
     const [displayImage, setDisplayImage] = useState(""); 
     const [bannerImage, setBannerImage] = useState("");
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault(); 
@@ -46,6 +48,7 @@ const CreatePodcast = () => {
                 setDisplayImage("");
                 setBannerImage("");
 
+                navigate("/podcasts");
                 toast.success("Podcast created successfully!", {
                     position: "top-right",
                     autoClose: 3000,

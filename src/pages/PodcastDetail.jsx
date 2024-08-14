@@ -145,10 +145,9 @@ const PodcastDetail = () => {
               <p className="podcast-description">{podcast.description}</p>
               <h2 className="episodes-heading">Episodes</h2>
               {episodes.length > 0 ? (
-                episodes.map((episode, index) => (
+                episodes.map((episode) => (
                   <EpisodeDetails
                     key={episode.id}
-                    index={index + 1}
                     title={episode.title}
                     description={episode.description}
                     audioFile={episode.audioFile}
