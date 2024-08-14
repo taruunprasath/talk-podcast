@@ -20,7 +20,7 @@ const Header = () => {
           toast.success("User Logged Out!", { position: "top-right", autoClose: 1000 });
           setTimeout(() => {
             navigate("/");
-          }, 2000);
+          }, 1000);
         })
         .catch((error) => {
           toast.error(`Error: ${error.message}`);

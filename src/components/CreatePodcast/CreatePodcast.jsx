@@ -119,7 +119,8 @@ const CreatePodcast = () => {
                             text={"Upload Banner Image"}
                         />
                     </div>
-                    <button type="submit" className="submit-button" disabled={loading} >{loading?"Create Podcast":"Create Podcast"}</button>
+                    <button type="submit" className="submit-button" disabled={loading} >
+                        {loading?"Creating Podcast...":"Create Podcast"}</button>
                 </form>
                 <ToastContainer />
             </div>
